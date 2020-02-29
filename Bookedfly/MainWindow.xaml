@@ -1,0 +1,83 @@
+﻿<Window x:Class="Bookedfly.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Bookedfly"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="530" Width="850">
+
+    <Window.Resources>
+        <LinearGradientBrush x:Key="GrayBlueGradientBrush" StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="OrangeRed" Offset="0" />
+            <GradientStop Color="Red" Offset="0.5" />
+            <GradientStop Color="IndianRed" Offset="1" />
+        </LinearGradientBrush>
+
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Width" Value="150" />
+            <Setter Property="Margin" Value="5" />
+            <Style.Triggers>
+                <EventTrigger RoutedEvent="Click">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard BeginTime="00:00:00" 
+                        RepeatBehavior="Forever" 
+                                    AutoReverse="True"
+                        Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)">
+                                <ColorAnimation From="Black" To="Red" Duration="0:0:1"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+                </EventTrigger>
+            </Style.Triggers>
+        </Style>
+
+
+
+    </Window.Resources>
+
+
+    <Grid>
+        <DockPanel>
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="_Rezerwacja">
+                    <MenuItem Header="_Generowanie puli biletów" Click="GenerujBilet" />
+                    <MenuItem Header="_Przegląd biletów" Click="PrzegladBiletow"/>
+                    <MenuItem Header="_Sprzedaj bilet" Click="SprzedajBilet"/>
+                </MenuItem>
+                <MenuItem Header="_Generuj lot">
+                    <MenuItem Header="_Dobór samolotu w zależności od odległości" Click="DoborSamolotu" />
+                    <MenuItem Header="_Wyświetl loty" Click="WyswietlLoty"/>
+                    <MenuItem Header="_Powielanie dnia" Click="PowielanieDnia"/>
+                </MenuItem>
+                <MenuItem Header="_Zarządzanie klientami" Click="ZarzadzajKlientami"></MenuItem>
+                <MenuItem Header="_Zarządzanie lotniskami" Click="ZarzadzajLotnisko"></MenuItem>
+                <MenuItem Header="_Zarządzanie trasami lotu" Click="ZarzadzajTrasami"></MenuItem>
+                <MenuItem Header="_Zarządzanie samolotami" Click="ZarzadzajSamoloty"></MenuItem>
+            </Menu>
+        </DockPanel>
+        <Image Source="Airplejn.png" Width ="250" Margin="31,30,565,396"/>
+        <Image Source="Airplejn2.png"  Width ="250" Margin="575,27,30,398"/>
+        <Image Source="chmurka.png"  Margin="83,165,611,280"/>
+        <Image Source="chmurka.png"  Margin="619,210,-16,227" RenderTransformOrigin="0.5,0.5">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+        <Image Source="chmurka.png"  Margin="301,186,219,227"/>
+        <Image Source="chmurka.png"  Margin="133,268,467,161"/>
+        <Image Source="chmurka.png"  Margin="399,338,213,83"/>
+        <Image Source="chmurka.png"  Margin="579,373,-65,35"/>
+        <Image Source="chmurka.png"  Margin="10,239,725,154"/>
+        <Image Source="chmurka.png"  Margin="93,402,570,22"/>
+        <MediaElement x:Name="imgLoadingImage" Margin="204,22,204,392" SpeedRatio="1" MediaEnded="MediaElement_MediaEnded" UnloadedBehavior="Manual" IsMuted="False"   Source="Bookedfly.gif"  Stretch="None" Visibility="Visible"/>
+        <Frame x:Name="Dodawanie" Margin="10,118,10,10" NavigationUIVisibility="Hidden"/>
+    </Grid>
+
+</Window>

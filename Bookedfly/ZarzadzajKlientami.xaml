@@ -1,0 +1,149 @@
+﻿<Page x:Class="Bookedfly.ZarzadzajKlientami"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Bookedfly"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ZarzadzajKlientami">
+    <Page.Resources>
+        <!-- Button STYLE -->
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Width" Value="150" />
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="Background" Value="#373737" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+        </Style>
+        <!-- TextBox STYLE -->
+        <Style TargetType="TextBox">
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="MinHeight" Value="20"/>
+            <Setter Property="MinWidth" Value="250"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border x:Name="border" CornerRadius="10" BorderBrush="#000" BorderThickness="1" Background="#696969">
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="Red"/>
+                                <Setter Property="Foreground" Value="White" />
+                                <Setter Property="FontWeight" Value="Bold" />
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="true">
+                                <Setter Property="Foreground" Value="White" />
+                                <Setter Property="BorderBrush" TargetName="border" Value="Red"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!-- Nagłówek STYLE-->
+        <Style TargetType="{x:Type GridViewColumnHeader}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type GridViewColumnHeader}">
+                        <Border BorderThickness="0,0,0,1" BorderBrush="Black" Background="#696969">
+                            <TextBlock x:Name="ContentHeader" Text="{TemplateBinding Content}" Padding="5,5,5,0" Width="{TemplateBinding Width}" TextAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="FontStyle" Value="Italic"/>
+            <Setter Property="OverridesDefaultStyle" Value="True" />
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontFamily" Value="Segoe UI" />
+            <Setter Property="FontSize" Value="15" />
+        </Style>
+    </Page.Resources>
+    <Grid>
+        <Label Margin="34,26,0,0" RenderTransformOrigin="0.262,0.556" HorizontalAlignment="Left" Width="88" Height="26" VerticalAlignment="Top">Imię:</Label>
+        <TextBox Width="148" Height="29" Margin="75,26,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Name="Imie"></TextBox>
+        <Label Margin="10,67,0,0" RenderTransformOrigin="0.262,0.556" HorizontalAlignment="Left" Width="88" Height="26" VerticalAlignment="Top">Nazwisko:</Label>
+        <TextBox Width="148" Height="29" Margin="75,67,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Name="Nazwisko"></TextBox>
+        <Button Width="150" Height="30" Margin="125,113,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="DodajOsobe">Dodaj osobę</Button>
+        <ListView Margin="423,24,40,0" Name="Osoby" ItemsSource="{Binding Path=ListaOsob}" Height="129" VerticalAlignment="Top" >
+            <ListView.Background>
+                <LinearGradientBrush EndPoint="0.939,0.919" StartPoint="0.061,0.081">
+                    <GradientStop Color="#696969" Offset="0"/>
+                    <GradientStop Color="#696969" Offset="1"/>
+                </LinearGradientBrush>
+            </ListView.Background>
+            <ListView.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleX="-0.259"/>
+                    <RotateTransform/>
+                    <TranslateTransform X="-0.974"/>
+                </TransformGroup>
+            </ListView.RenderTransform>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Imię" Width="170" DisplayMemberBinding="{Binding Imie}" >
+                    </GridViewColumn>
+                    <GridViewColumn Header="Nazwisko" Width="120" DisplayMemberBinding="{Binding Nazwisko}" >
+                    </GridViewColumn>
+                </GridView>
+
+            </ListView.View>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="FontSize" Value="14" />
+                    <Setter Property="Foreground" Value="White" />
+                    <Setter Property="FontWeight" Value="Bold" />
+                    <Setter Property="FontStyle" Value="Italic" />
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
+        <Button Width="150" Height="30" Margin="511,153,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="UsunOsobe">Usuń osobę</Button>
+        <Label Margin="1,192,0,0" RenderTransformOrigin="0.262,0.556" HorizontalAlignment="Left" Width="88" Height="26" VerticalAlignment="Top">Nazwa firmy:</Label>
+        <TextBox Width="148" Height="29" Margin="76,192,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Name="Nazwa"></TextBox>
+        <Label Margin="35,233,0,0" RenderTransformOrigin="0.262,0.556" HorizontalAlignment="Left" Width="88" Height="26" VerticalAlignment="Top">KRS:</Label>
+        <TextBox Width="148" Height="29" Margin="76,231,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Name="KRS"></TextBox>
+        <Button Width="150" Height="30" Margin="126,280,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="DodajFirme">Dodaj firmę</Button>
+        <ListView Margin="422,182,41,0" Name="Firmy" ItemsSource="{Binding Path=ListaFirm}" Height="128" VerticalAlignment="Top" >
+            <ListView.Background>
+                <LinearGradientBrush EndPoint="0.939,0.919" StartPoint="0.061,0.081">
+                    <GradientStop Color="#696969" Offset="0"/>
+                    <GradientStop Color="#696969" Offset="1"/>
+                </LinearGradientBrush>
+            </ListView.Background>
+            <ListView.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleX="-0.259"/>
+                    <RotateTransform/>
+                    <TranslateTransform X="-0.974"/>
+                </TransformGroup>
+            </ListView.RenderTransform>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Nazwa firmy" Width="170" DisplayMemberBinding="{Binding Nazwa}" >
+                    </GridViewColumn>
+                    <GridViewColumn Header="KRS" Width="120" DisplayMemberBinding="{Binding KRS}" >
+
+                    </GridViewColumn>
+                </GridView>
+
+            </ListView.View>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="FontSize" Value="14" />
+                    <Setter Property="Foreground" Value="White" />
+                    <Setter Property="FontWeight" Value="Bold" />
+                    <Setter Property="FontStyle" Value="Italic" />
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
+        <Button Width="150" Height="30" Margin="511,310,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="UsunFirme">Usuń firmę</Button>
+    </Grid>
+</Page>

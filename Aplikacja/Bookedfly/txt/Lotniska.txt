@@ -1,0 +1,5 @@
+Klinszasa 0 
+Nowy_Jork 12 
+Bialystok 7,77 
+Lipsk 7,67 
+Londyn 9,01 
